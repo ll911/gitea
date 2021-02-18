@@ -15,7 +15,7 @@ RUN apk update && apk --no-cache add asciidoctor \
     sqlite \
     su-exec \
     tzdata \
-    gnupg freetype freetype-dev gcc g++ git libpng python-dev py-pip python3-dev py3-pip build-base libffi-dev openssl-dev python-dev krb5-dev linux-headers zeromq-dev \
+    gnupg freetype freetype-dev gcc g++ git libpng py-pip python3-dev py3-pip build-base libffi-dev openssl-dev krb5-dev linux-headers zeromq-dev \
  && adduser -S git \
  && chown -R git:0 /app && chmod -R 770 /app \
  && curl -L -J --header "Accept: application/tar+gzip, application/x-gzip, application/octet-stream" -o /usr/local/bin/gitea ${DISTBIN} \
