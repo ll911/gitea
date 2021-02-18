@@ -4,7 +4,7 @@ ARG DISTBIN="https://github.com/go-gitea/gitea/releases/download/v${VER}/gitea-$
 
 USER root 
 WORKDIR /app
-RUN apk upate && apk --no-cache add asciidoctor \
+RUN apk update && apk --no-cache add asciidoctor \
     bash ca-certificates \
     curl \
     gettext \
