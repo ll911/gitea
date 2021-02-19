@@ -6,7 +6,8 @@ WORKDIR /data
 RUN apk update && apk --no-cache add  ${dep} \
  && pip3 install --no-cache-dir -U pip setuptools jupyter docutils \
  && git config --global core.excludesfile '/data/git/.gitignore' \
- && chown -R git:0 /data && chmod -R 770 /data
+ && chown -R git:0 /data && chmod -R 770 /data \
+ && ln -sf /data/git/.gitconfig /.gitconfig
 
 USER git
 WORKDIR /data/git
