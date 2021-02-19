@@ -1,35 +1,12 @@
-FROM pandoc/alpine-latex
+FROM gitea/gitea:1.13.2
 
-ARG DISTBIN="https://github.com/go-gitea/gitea/releases/download/v${VER}/gitea-${VER}-linux-amd64"
-
+ARG dep="asciidoctor freetype freetype-dev gcc g++ libpng libffi-dev py-pip python3-dev py3-pip py3-pyzmq"
 USER root 
-WORKDIR /app
-RUN apk update && apk --no-cache add asciidoctor \
-    bash ca-certificates \
-    curl \
-    gettext \
-    git \
-    linux-pam \
-    openssh \
-    s6 \
-    sqlite \
-    su-exec \
-    tzdata \
-    gnupg freetype freetype-dev gcc g++ git libpng py-pip python3-dev py3-pip build-base libffi-dev openssl-dev krb5-dev linux-headers zeromq-dev \
- && adduser -S git \
- && chown -R git:0 /app && chmod -R 770 /app \
- && curl -L -J --header "Accept: application/tar+gzip, application/x-gzip, application/octet-stream" -o /usr/local/bin/gitea ${DISTBIN} \
- && chmod 755 /usr/local/bin/gitea \
- && mkdir -p /app/gitea && chown -R git:0 /app/gitea && chmod -R 775 /app/gitea \
- && mkdir -p /data/git && chown -R git:0 /data/git && chmod -R 775 /data \
- && pip3 install --no-cache-dir -U pip setuptools \
- && pip3 install --no-cache-dir kiwisolver==1.1.0 jupyter matplotlib==3.2.1 docutils \
+WORKDIR /data
+RUN apk update && apk --no-cache add  ${dep} \
+ && pip3 install --no-cache-dir -U pip setuptools jupyter docutils \
  && git config --global core.excludesfile '/data/git/.gitignore' \
- && ln -sf /usr/local/bin/gitea /app/gitea/gitea \
- && ln -sf /data/git/.gitconfig /.gitconfig
-# ln -sf /data /app/gitea/data \
-# ln -sf /log /app/gitea/log \
+ && chown -R git:0 /data && chmod -R 770 /data
 
-ENV PATH=/app/gitea:$PATH
 USER git
 WORKDIR /data/git
