@@ -3,7 +3,7 @@ FROM gitea/gitea:1.16.5
 ARG dep="asciidoctor freetype freetype-dev gcc g++ libpng libffi-dev py-pip python3-dev py3-pip py3-pyzmq"
 USER root 
 WORKDIR /data
-RUN apk update && apk --no-cache add  ${dep} \
+RUN apk update && apk --no-cache add ${dep} \
  && apk -i upgrade \
  && pip3 install --no-cache-dir -U pip setuptools jupyter docutils \
  && git config --global core.excludesfile '/data/git/.gitignore' \
