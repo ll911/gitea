@@ -4,6 +4,7 @@ ARG dep="asciidoctor freetype freetype-dev gcc g++ libpng libffi-dev py-pip pyth
 USER root 
 WORKDIR /data
 RUN apk update && apk --no-cache add  ${dep} \
+ && apk -i upgrade \
  && pip3 install --no-cache-dir -U pip setuptools jupyter docutils \
  && git config --global core.excludesfile '/data/git/.gitignore' \
  && chown -R git:0 /data && chmod -R 770 /data \
