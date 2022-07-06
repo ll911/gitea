@@ -1,6 +1,6 @@
 FROM gitea/gitea:1.16.8
 
-ARG dep="asciidoctor freetype freetype-dev gcc g++ libpng libffi-dev py-pip python3-dev py3-pip py3-pyzmq"
+ARG dep="asciidoctor freetype freetype-dev gcc g++ libpng libffi-dev py-pip python3-dev py3-pip"
 USER root 
 WORKDIR /data
 RUN apk update && apk --no-cache add ${dep} \
