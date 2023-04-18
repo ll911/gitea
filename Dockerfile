@@ -1,4 +1,4 @@
-FROM gitea/gitea:1.18.5
+FROM gitea/gitea:1.19.1
 
 ARG dep="asciidoctor freetype freetype-dev gcc g++ libpng libffi-dev py-pip python3-dev py3-pip"
 USER root 
