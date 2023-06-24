@@ -7,6 +7,7 @@ RUN apk update && apk --no-cache add ${dep} \
  && apk upgrade \
  && pip3 install --no-cache-dir -U pip setuptools \
  && pip3 install --no-cache-dir jupyter docutils \
+ && pip3 install --no-cache-dir pandoc \
  && git config --global core.excludesfile '/data/git/.gitignore' \
  && chown -R git:0 /data && chmod -R 770 /data \
  && chmod 664 /etc/passwd \
