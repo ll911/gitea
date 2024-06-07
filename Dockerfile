@@ -1,6 +1,6 @@
 FROM gitea/gitea:1.22.0
 
-ARG dep="asciidoctor apostrophe freetype freetype-dev gcc g++ libpng libffi-dev py-pip python3-dev py3-pip py3-setuptools py3-docutils jupyter-notebook jupyter-notebook-pyc"
+ARG dep="asciidoctor freetype freetype-dev gcc g++ libpng libffi-dev py-pip python3-dev py3-pip py3-setuptools py3-docutils jupyter-notebook jupyter-notebook-pyc"
 USER root 
 WORKDIR /data
 RUN apk update && apk --no-cache add ${dep} \
